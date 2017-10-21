@@ -1,0 +1,114 @@
+<!doctype html>
+
+
+<html ng-app="myTodo">
+<head>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title> Simple Todo App</title>
+
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+		#todo-form 	 			{ margin-bottom:50px; }
+	</style>
+
+
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="js/controllers/controller.js"></script> 
+	<script src="js/services/services.js"></script> 
+	<script src="js/app.js"></script> 
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<div class="row" id ="task-lists" >
+		  <p>	
+			<button type="button" class="btn btn-default btn-sm" ng-click="addList=1;showLists=0" ng-show="showLists">
+          		<span class="glyphicon glyphicon-plus-sign"></span>New List
+        	</button>
+         </p>	
+        	<div ng-show="addList">
+        		<p>
+					<input  type="text" class="form-control input-lg text-center" placeholder="Name of List" ng-model="currentList.name">
+				</p>	
+				<p>
+				 <button type="submit" class="btn btn-primary btn-lg" ng-click="newList()">Create</button>
+				</p>     
+			</div>
+
+
+           <div ng-show="showLists">
+			   <h3>Saved Lists</h3>
+				<div class="checkbox" ng-repeat="list in lists">
+					<u ng-click="getTasks(list)">{{ list.name }}</u>
+			    </div>
+			 </div>  	
+	    </div>
+
+		<div class="row" id ="tasks" ng-show="addItem">
+       
+			<div class="jumbotron text-center">
+				<h1>{{ currentList.name}} <span class="label label-info">{{ todos.length }}</span></h1>
+			</div>
+
+	
+		  <div id="todo-list" class="row" >
+			<div >
+
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<div class="checkbox" ng-repeat="todo in todos track by $index">
+					<label>
+					  <p>{{ todo }} &nbsp;<span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo)" ng-show="$index==todos.length-1"></span>
+					  </p>	
+					</label>
+				</div>
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+				<p>
+        			<button type="button" class="btn btn-default btn-sm" ng-click="addTask=1">
+          				<span class="glyphicon glyphicon-plus-sign"></span>Task
+        			</button>
+        			<button type="button" class="btn btn-default btn-sm" ng-click="reload()" ng-show="todos.length">
+          			  Save List
+        			</button>
+
+      			</p>
+
+			</div>	
+
+		</div>
+	</div>	
+
+		<!-- FORM TO CREATE TODOS -->
+		<div id="todo-form" class="row" ng-show="addTask">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control input-lg text-center" placeholder="I want to play guitar today" ng-model="formData.text">
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
+
+<style>
+
+</style>
