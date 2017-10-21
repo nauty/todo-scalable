@@ -11,10 +11,8 @@ var router = require('./app/routes');
 mongoose.connect(database.mongodb); 	
 
 app.use(express.static('./public')); 		
-app.use(morgan('dev')); 
 app.use(bodyParser.urlencoded({'extended': 'true'})); 
 app.use(bodyParser.json()); 
-app.use(bodyParser.json({type: 'application/vnd.api+json'})); 
 
 
 // routes ======================================================================
