@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ashutosh",
+   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.13.4",
@@ -17,3 +18,4 @@
     "redis": "^2.8.0"
   }
 }
+
