@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Simple todo application in nodejs.",
   "main": "server.js",
+    "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "ashutosh",
   "dependencies": {
     "body-parser": "^1.4.3",
